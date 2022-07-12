@@ -9,7 +9,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.integer :zip
       t.integer :dropbox_id
       t.boolean :is_admin
-      
+      # t.string :email
       t.timestamps
     end
   end
