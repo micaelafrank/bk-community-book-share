@@ -2,51 +2,51 @@ import './App.css';
 import React, { useState, useEffect } from 'react'
 import LogIn from './LogIn'
 import NavBar from './NavBar'
-import { Switch, Route } from 'react-router-dom'
-import 'bootstrap/dist/css/bootstrap.min.css'; 
+import { Route, Routes } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import NewMember from './NewMember';
 import BookList from './BookList';
+// import Home from './Home';
+import Profile from './Profile';
 
 function App() {
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    fetch("/me").then((response) => {
-      if (response.ok) {
-        response.json().then((user) => setUser(user));
-      }
-    });
-  }, []);
+  const [user, setUser] = useState({});
+  const [books, setBooks] = useState([]);
+  // const [allUsers, setAllUsers] = useState([]);
 
+  useEffect(() => {
+    fetch("/books")
+      .then((r) => r.json())
+      .then(data => {setBooks(data)})
+  }, [])
+  
+  useEffect(() => {
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    })
+  }, [])
+
+  function renderNewUser(newUser){
+    setUser(newUser);
+    // setAllUsers([...allUsers, newUser]);
+  }
+
+  function updateClaims(claimedBook){
+    const updatedBookList = books.map((book) => book.id === claimedBook.id ? claimedBook : book);
+    setBooks(updatedBookList);
+}
   return (
     <div>
-        <NavBar user={user} setUser={setUser} />
-          <Switch>
-          <Route path="/login">
-            <LogIn />
-          </Route>
-          <Route path="/signup">
-            <NewMember />
-          </Route>
-          <Route path="/books">
-            <BookList books={books}/> 
-          </Route>
-          <Route path="/me">
-            <Profile />
-          </Route>
-          <Route path="/user">
-            {/* <UserList /> */}
-          </Route>
-          <Route path="/logout">
-            {/* <SignOut /> */}
-          </Route>
-          <Route exact path="/">
-            {/* <Home/> */}
-          </Route>
-          <Route path="*">
-            <h1>404 not found</h1>
-          </Route>
-        </Switch>
-    </div> 
-  );
+      <NavBar user={user} setUser={setUser} />
+      <Routes>
+        <Route path="/login" element={<LogIn user={user} setUser={setUser} />} />
+        <Route path="/me" element={<Profile user={user} />} />
+        <Route path="/signup" element={<NewMember user={user} setUser={setUser} renderNewUser={renderNewUser} />}  />
+        <Route path="/books" element={<BookList updateClaims={updateClaims} books={books} setBooks={setBooks} />} />
+      </Routes>
+    </div>
+  )
 }
 export default App;

@@ -2,10 +2,9 @@ class BooksController < ApplicationController
 rescue_from ActiveRecord::RecordNotFound, with: :book_not_found
     before_action :authorize
     skip_before_action :authorize, only: [:index]
-
     def index
-        books = Book.all 
-        render json: books 
+        books = Book.all
+        render json: books
     end
 
     def show
@@ -13,8 +12,14 @@ rescue_from ActiveRecord::RecordNotFound, with: :book_not_found
         render json: book
     end
 
+    def update
+        book = Book.find(params[:id])
+        book.update!(can_claim: params[:can_claim])
+        render json: book, status: :ok 
+    end
+
     def create 
-        book = Book.create(book_params)
+        book = Book.create!(book_params)
         render json: book, status: :created    
     end
 
@@ -22,6 +27,10 @@ rescue_from ActiveRecord::RecordNotFound, with: :book_not_found
 
     def book_not_found
         render json: { error: "Sorry, but it looks like this book is not available!" }, status: :not_found
+    end
+
+    def book_invalid(invalid)
+        render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
     end
 
     def authorize 

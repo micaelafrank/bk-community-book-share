@@ -1,17 +1,58 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import Nav from 'react-bootstrap/Nav';
+import { useNavigate } from 'react-router-dom';
+// import Container from 'react-bootstrap/Container';
 
-function NavBar(){
-    return (
-        <nav>
-            <h2>Plot Luck</h2>
-            <p>A free community-centered book exchange</p>
-            <NavLink className="navItem" exact to="/">Home</NavLink>
-            <NavLink className="navItem" to="/books">Books</NavLink>
-            <NavLink className="navItem" to="/me">Profile</NavLink>
-            <NavLink className="navItem" to="/user">Members</NavLink>
-            <NavLink className="navItem" to="/logout">Sign Out</NavLink>
-        </nav>
-)}
+// if user is signed in: 
+// add this to nav bar:
+// <Navbar.Collapse className="justify-content-end">
+//     <Navbar.Text>
+//         Signed in as: <a href="#login">Mark Otto</a>
+//     </Navbar.Text>
+// </Navbar.Collapse>
 
-export default NavBar; 
+function NavBar({ user, setUser }) {
+    const navigate = useNavigate();
+
+    function handleLogoutClick() {
+        fetch("/logout", { method: "DELETE" }).then((r) => {
+            if (r.ok) {
+                setUser({});
+                navigate('/login')
+            }
+        });
+
+
+    } return (
+        <div style={{ display: "flex", backgroundColor: "orange", color: "white", marginBottom: "2rem" }}>
+            <div style={{ padding: "30px", width: "50%", flexDirection: "row" }}>
+                <a href="/login" style={{color:"white", textDecoration:"none"}}>
+                <h1 style={{ fontSize: "3rem", fontFamily:"Times New Roman", fontWeight:"bold" }}>Plotluck</h1>
+                    <h3 style={{ fontSize: "1.2rem", fontFamily: "Times New Roman", fontWeight: "bold" }}>Community-Centered Book Exchange</h3>
+                </a>
+            </div>
+            <Nav style={{ width: "60%", paddingTop: "30px", paddingRight: "10px" }} className="justify-content-end" activeKey="/login">
+                {user.username ? (
+                            <Nav.Item style={{paddingRight:"10px"}} className="justify-content-end">
+                                <p>Signed in as: {user.username}</p>
+                            </Nav.Item>) : null}
+                            <Nav.Item>
+                                {user.username? <button style={{ color: "black" }} className="navItem" onClick={() => navigate("/books")} >Books</button> : null}
+                            </Nav.Item>
+                            <Nav.Item>
+                                <button style={{ color: "black" }} className="navItem" onClick={()=> navigate("/me")} >Profile</button>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <button style={{ color: "black" }} className="navItem" onClick={() => navigate("/signup")} >Signup</button>
+                            </Nav.Item>
+                            {user.username ? <div><button onClick={handleLogoutClick}>LOG OUT</button></div> : null}
+                        </Nav>
+                        <p style={{ paddingBottom: "2rem" }}></p>
+                    </div>
+                )}
+
+                export default NavBar;
+
+
+
+

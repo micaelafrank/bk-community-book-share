@@ -5,9 +5,24 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgba(255, 232, 138, 0.874);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.selected-genre{
+  background-color:red;
+  color: white;
+}
+
+.claimedBookClass{
+  opacity: 50%;
+  pointer-events: none;
+}
+
+.claimedBookClassAdmin{
+  opacity: 50%;
 }

@@ -6,9 +6,10 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :password_digest
       t.integer :total_acquired_books
       t.integer :tokens 
-      t.integer :zip
+      t.string :zip
       t.integer :dropbox_id
       t.boolean :is_admin
+      t.string :email
       # t.string :email
       t.timestamps
     end

@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2022_07_11_173743) do
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "author"
-    t.string "description"
+    t.text "description"
     t.integer "user_id"
     t.integer "review_id"
     t.integer "genre_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2022_07_11_173743) do
 
   create_table "dropboxes", force: :cascade do |t|
     t.string "dropbox_location"
+    t.string "zip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -41,9 +42,9 @@ ActiveRecord::Schema.define(version: 2022_07_11_173743) do
 
   create_table "reviews", force: :cascade do |t|
     t.string "title"
-    t.string "username"
     t.string "user_review"
     t.integer "book_id"
+    t.string "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -54,9 +55,10 @@ ActiveRecord::Schema.define(version: 2022_07_11_173743) do
     t.string "password_digest"
     t.integer "total_acquired_books"
     t.integer "tokens"
-    t.integer "zip"
+    t.string "zip"
     t.integer "dropbox_id"
     t.boolean "is_admin"
+    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -1,5 +1,3 @@
 class DropboxSerializer < ActiveModel::Serializer
-  attributes :id, :address 
-  
-  has_many :users 
+  attributes :id, :zip, :dropbox_location
 end
