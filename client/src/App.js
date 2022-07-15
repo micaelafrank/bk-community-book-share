@@ -14,11 +14,13 @@ function App() {
   const [books, setBooks] = useState([]);
   // const [allUsers, setAllUsers] = useState([]);
 
-  useEffect(() => {
-    fetch("/books")
-      .then((r) => r.json())
-      .then(data => {setBooks(data)})
-  }, [])
+  // useEffect(() => {
+  //   fetch("/books")
+  //     .then((r) => r.json())
+  //     .then(data => {
+  //       setBooks(data)
+  //     })
+  // }, [])
   
   useEffect(() => {
     fetch("/me").then((r) => {

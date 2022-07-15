@@ -23,7 +23,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
         render json: user, status: :created
         end
       else
-        render json: { message: "Invalid zipCode"}
+        render json: { message: "Invalid zip code"}
       end
     end
 

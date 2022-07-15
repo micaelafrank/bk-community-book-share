@@ -18,6 +18,7 @@ function BookList({ books, updateClaims, setBooks }){
         return (
             <Book
                 key={book.id}
+                user_id={book.user_id}
                 id={book.id}
                 title={book.title}
                 author={book.author}
@@ -28,6 +29,7 @@ function BookList({ books, updateClaims, setBooks }){
                 updateClaims={updateClaims}
                 dropBoxAddress={book.dropBoxAddress}
                 sold_by={book.sold_by}
+                // user={book.user}
                 // booksAdmin={book.booksAdmin}
                 book={book}
             />

@@ -26,15 +26,15 @@ rescue_from ActiveRecord::RecordNotFound, with: :book_not_found
     private
 
     def book_not_found
-        render json: { error: "Sorry, but it looks like this book is not available!" }, status: :not_found
+        render json: [ error: "Sorry, but it looks like this book is not available!" ], status: :not_found
     end
 
     def book_invalid(invalid)
-        render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
+        render json: [errors: invalid.record.errors.full_messages], status: :unprocessable_entity
     end
 
     def authorize 
-        return render json: { error: "You must be a member to continue" }, status: :unauthorized unless session.include? :user_id
+        return render json: [ error: "You must be a member to continue" ], status: :unauthorized unless session.include? :user_id
     end
 
     def book_params

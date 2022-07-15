@@ -40,7 +40,7 @@ function LogIn({ setUser, user }){
     })}
     return(
         <>
-            <p style={{textAlign: 'center', margin:"25px"}}>Sign up and discover your next favorite book just a stroll away... Environmentally friendly and free of cost, Plot Luck allows members to digitally access a "library" created by the very community around you. Browse through a local selection, claim your next read, and pick it up at your neighborhood dropbox. Contribute to your community by passing along stories of your own and listing them through your profile</p>
+            <p style={{textAlign: 'center', margin:"25px", paddingLeft:"100px", paddingRight:"100px"}}>Sign up and discover your next favorite book just a stroll away... Environmentally friendly and free of cost, Plot Luck allows members to digitally access a "library" created by the very community around you. Browse through a local selection, claim your next read, and pick it up at your neighborhood dropbox. Contribute to your community by passing along stories of your own and listing them through your profile</p>
             <div id="loginCard" style={{ width:"23rem", padding:"30px", border:"1px solid black", borderRadius: "6px", margin:"auto"}}>
                 <h2 style={{textAlign:"center"}}>Log In</h2>
                 <br></br>
@@ -56,7 +56,8 @@ function LogIn({ setUser, user }){
                         <button style={{ marginBottom:"20px", marginTop:"20px"}} type="submit" className="btn btn-primary">Submit</button>
                     </form>
                     <nav>
-                        <NavLink exact to="/signup">New to Plotluck? Become a member!</NavLink>
+                        <button style={{ color: "black" }} className="navItem" onClick={() => navigate("/signup")} >New to Plotluck? Become a member!</button>
+                        {/* <NavLink exact to="/signup">New to Plotluck? Become a member!</NavLink> */}
                     </nav>
             </div>
         </>

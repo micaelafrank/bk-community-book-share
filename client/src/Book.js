@@ -1,10 +1,10 @@
 import React from 'react';
 
-function Book({ title, id, author, booksAdmin, description, updateClaims, sold_by, dropBoxAddress, genre, can_claim, total_acquired_books, user}) {
+function Book({ title, id, author, booksAdmin, user_id, description, updateClaims, sold_by, dropBoxAddress, genre, can_claim, user}) {
     
     function handleClaim(){
         const booksUpdate = {
-            total_acquired_books: total_acquired_books + 1, 
+            user_id: user.id, 
             can_claim: !can_claim,       
         };
         console.log(can_claim)

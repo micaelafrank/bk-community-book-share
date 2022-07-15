@@ -27,11 +27,11 @@ function NavBar({ user, setUser }) {
         <div style={{ display: "flex", backgroundColor: "orange", color: "white", marginBottom: "2rem" }}>
             <div style={{ padding: "30px", width: "50%", flexDirection: "row" }}>
                 <a href="/login" style={{color:"white", textDecoration:"none"}}>
-                <h1 style={{ fontSize: "3rem", fontFamily:"Times New Roman", fontWeight:"bold" }}>Plotluck</h1>
-                    <h3 style={{ fontSize: "1.2rem", fontFamily: "Times New Roman", fontWeight: "bold" }}>Community-Centered Book Exchange</h3>
+                    <h1 id="title" style={{ fontSize: "4rem" }}>Plotluck</h1>
+                    <h3 id="title1" style={{ fontSize: "1.5rem" }}>Community-Centered Book Exchange</h3>
                 </a>
             </div>
-            <Nav style={{ width: "60%", paddingTop: "30px", paddingRight: "10px" }} className="justify-content-end" activeKey="/login">
+            <Nav style={{ width: "65%", paddingTop: "30px", paddingRight: "10px" }} className="justify-content-end" activeKey="/login">
                 {user.username ? (
                             <Nav.Item style={{paddingRight:"10px"}} className="justify-content-end">
                                 <p>Signed in as: {user.username}</p>
